@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>u_business_phone</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Print selected user id to field</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+		try {
+		var firstNameRef = g_form.getValue('u_first_name_reference');
+		g_form.setValue('u_first_name', firstNameRef);
+		g_form.setValue('u_last_name_reference', g_form.getValue('u_first_name_reference'));
+
+		// Instantiate the GetEmailAddress Script Include 
+		var getUserData = new GlideAjax('PhoneSearchUtils');
+			// Specify the getEmail method 
+			getUserData.addParam('sysparm_name','getUserDataArr');
+			
+			// Pass the Requested for sys_id
+			getUserData.addParam('sysparm_userID', firstNameRef);
+			// Send the request to the server
+			getUserData.getXML(populateEmailField);
+
+		// When the response is back from the server
+		function populateEmailField(response){
+			// Extract the email address from the response, clear any value from the email field, 
+			// set new value in the email field
+			var emailFromScriptInclude = response.responseXML.documentElement.getAttribute("answer");
+			var emailString = JSON.parse(emailFromScriptInclude)
+
+			console.log(emailString);
+			g_form.setValue('u_results', emailString);
+	}
+	} catch (e) {
+		alert("error: " + e );
+	}
+
+
+   //Type appropriate comment here, and begin script below
+   
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-12-17 12:30:06</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d752b1430789e4107ba3f19d7c1ed0a1</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>Print selected user id to field</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Phone number search" source="x_558697_phone_num">2700be050789a0107ba3f19d7c1ed07c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Phone number search">2700be050789a0107ba3f19d7c1ed07c</sys_scope>
+        <sys_update_name>sys_script_client_d752b1430789e4107ba3f19d7c1ed0a1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-12-18 08:16:29</sys_updated_on>
+        <table>x_558697_phone_num_search_history</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

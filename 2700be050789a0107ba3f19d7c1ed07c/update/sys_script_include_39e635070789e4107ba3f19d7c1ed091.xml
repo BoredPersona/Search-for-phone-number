@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_558697_phone_num.PhoneSearchUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description>Get phone, email, and status of user from user sys_id.</description>
+        <name>PhoneSearchUtils</name>
+        <script><![CDATA[var PhoneSearchUtils = Class.create();
+PhoneSearchUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+		getEmail: function() {
+		var userRecord = new GlideRecord("sys_user");
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.email + '';
+	},
+		getFirstName: function() {
+		var userRecord = new GlideRecord("sys_user");
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.first_name + '';
+	},
+		getLastName: function() {
+		var userRecord = new GlideRecord("sys_user");
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.last_name + '';
+	},
+		getDepartment: function() {
+		var userRecord = new GlideRecord("sys_user");
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.department + '';
+	},
+		getPhone: function() {
+		var userRecord = new GlideRecord("sys_user");
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.phone + '';
+	},
+		getMobilePhone: function() {
+		var userRecord = new GlideRecord("sys_user");
+		userRecord.get(this.getParameter('sysparm_userID'));
+		return userRecord.mobile_phone + '';
+	},
+		logGlideRecordSysUser: function() {
+		var userRecord = new GlideRecord("sys_user");
+			console.log(userRecord);
+		},
+		getUserDataArr: function() {
+		var userRecord = new GlideRecord("sys_user");
+			userRecord.get(this.getParameter('sysparm_userID'));
+		var userDataArr = [];
+			userDataArr.push({
+				"uFirstName" : userRecord.getValue('first_name'),
+				"uLastName" : userRecord.getValue('last_name'),
+				"uEmail": userRecord.getValue('email'),
+				"uDepartment" : userRecord.getValue('department'),
+				"uBusinessPhone" : userRecord.getValue('phone'), // toto opraviť
+				"uMobilePhone" : userRecord.getValue('mobile_phone')
+			});
+		return JSON.stringify(userDataArr);
+			
+			
+			
+		},
+	
+    type: 'PhoneSearchUtils'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-12-17 12:46:32</sys_created_on>
+        <sys_id>39e635070789e4107ba3f19d7c1ed091</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>PhoneSearchUtils</sys_name>
+        <sys_package display_value="Phone number search" source="x_558697_phone_num">2700be050789a0107ba3f19d7c1ed07c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Phone number search">2700be050789a0107ba3f19d7c1ed07c</sys_scope>
+        <sys_update_name>sys_script_include_39e635070789e4107ba3f19d7c1ed091</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-12-18 08:18:22</sys_updated_on>
+    </sys_script_include>
+</record_update>

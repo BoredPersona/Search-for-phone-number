@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Wen someone write in the seacht fields display seach reults.</description>
+        <field>u_business_phone</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>If search field is not empty</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	
+	if (isLoading || newValue === '') {
+      return;
+   }
+	// ak sa zmení hodnota v poli u_first_name zaznamenaj tú hodnotu vyhladj usera ktorý tú -
+	//hodnotu má v poli first_name a výsledok vypíš do pola u_results.
+	var u_first_name = g_form.getValue('u_first_name');
+	var u_last_name = g_form.getValue('u_last_name');
+	var u_deparment = g_form.getValue('u_deparment');
+	var u_business_phone = g_form.getValue('u_business_phone');
+	var u_mobile_phone = g_form.getValue('u_mobile_phone');
+	var u_email = g_form.getValue('u_email');
+	
+	var userGR = new GlideRecord('sys_user');
+		// nastav filtre pre výstup
+		//userGR.addQuery('active', true);
+		userGR.query();	
+	
+	if (userGR.get('first_name', u_first_name)) {
+        // nájdi incident s týmto číslom a vypíš jeho sys_id
+		g_form.setValue('u_results', userGR.getValue('email'));
+    } else {
+		g_form.setValue('u_results', "Užívateľ sa nenašiel");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//alert("u_first_name \n" + u_first_name +"\n u_last_name \n"+ u_last_name +"\n u_deparment \n"+ u_deparment +"\n u_business_phone \n"+ u_business_phone +"\n u_mobile_phone \n"+ u_mobile_phone +"\n u_email \n"+ u_email);
+	
+	
+
+
+   //Type appropriate comment here, and begin script below
+   
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2020-12-11 12:46:54</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>33fb328d0789a0107ba3f19d7c1ed0a0</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>If search field is not empty</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Phone number search" source="x_558697_phone_num">2700be050789a0107ba3f19d7c1ed07c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Phone number search">2700be050789a0107ba3f19d7c1ed07c</sys_scope>
+        <sys_update_name>sys_script_client_33fb328d0789a0107ba3f19d7c1ed0a0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-12-17 14:17:47</sys_updated_on>
+        <table>x_558697_phone_num_search_history</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

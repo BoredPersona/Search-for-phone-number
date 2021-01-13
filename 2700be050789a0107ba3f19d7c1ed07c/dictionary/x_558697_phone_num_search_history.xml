@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Search History" max_length="40" name="x_558697_phone_num_search_history" sizeclass="6" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" default="first_name" label="Searched by selecting" max_length="40" name="searched_by_selecting" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Business Phone" value="business_phone"/>
+                <element inactive_on_update="false" label="Department" value="department"/>
+                <element inactive_on_update="false" label="E-Mail" value="email"/>
+                <element inactive_on_update="false" label="First Name" value="first_name"/>
+                <element inactive_on_update="false" label="Last Name" value="last_name"/>
+                <element inactive_on_update="false" label="Mobile Phone" value="mobile_phone"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Searched department ID" max_length="300" name="searched_department_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Searched department name" max_length="100" name="searched_department_name" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Searched team description" max_length="1000" name="searched_team_description" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Searched team ID" max_length="300" name="searched_team_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Searched team name" max_length="100" name="searched_team_name" type="string"/>
+        <element attributes="encode_utf8=false" label="Searched user groups" max_length="32" name="searched_user_groups" reference="sys_user_group" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Searched user ID" max_length="300" name="searched_user_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Searched user name" max_length="100" name="searched_user_name" type="string"/>
+        <element default="javascript:current.getTableName();" label="Class" max_length="80" name="sys_class_name" type="sys_class_name"/>
+        <element attributes="edge_encryption_enabled=true" label="Business Phone" max_length="40" name="u_business_phone" type="string"/>
+        <element attributes="encode_utf8=false" dependent="u_business_phone" dependent_on_field="u_business_phone" label="Business Phone Reference" max_length="32" name="u_business_phone_reference" reference="sys_user" type="reference" use_dependent_field="true"/>
+        <element attributes="edge_encryption_enabled=true" label="Department" max_length="40" name="u_department" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="E-Mail" max_length="40" name="u_email" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="First Name" max_length="40" name="u_first_name" type="string"/>
+        <element attributes="encode_utf8=false" dependent="u_first_name" dependent_on_field="u_first_name" label="First Name Reference" max_length="32" name="u_first_name_reference" reference="sys_user" type="reference" use_dependent_field="true"/>
+        <element attributes="no_sort=true,slushbucket_ref_no_expand=true" label="List of users" max_length="1024" name="u_glide_list_of_users" reference="sys_user" type="glide_list"/>
+        <element attributes="edge_encryption_enabled=true" label="New Journal" max_length="4000" name="u_journal_9" type="journal"/>
+        <element attributes="edge_encryption_enabled=true" label="Last Name" max_length="40" name="u_last_name" type="string"/>
+        <element attributes="encode_utf8=false" dependent="u_first_name_reference" dependent_on_field="u_first_name_reference" label="Last Name Reference" max_length="32" name="u_last_name_reference" reference="sys_user" type="reference" use_dependent_field="true"/>
+        <element attributes="edge_encryption_enabled=true" label="Mobile Phone" max_length="40" name="u_mobile_phone" type="string"/>
+        <element attributes="encode_utf8=false" label="New Reference" max_length="32" name="u_reference_8" reference="sys_user" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Results" max_length="10000" name="u_results" type="string"/>
+        <index name="index">
+            <element name="searched_user_groups"/>
+        </index>
+        <index name="index2">
+            <element name="u_first_name_reference"/>
+        </index>
+        <index name="index3">
+            <element name="u_business_phone_reference"/>
+        </index>
+        <index name="index4">
+            <element name="u_last_name_reference"/>
+        </index>
+        <index name="index5">
+            <element name="u_reference_8"/>
+        </index>
+        <index name="index6">
+            <element name="sys_class_name"/>
+        </index>
+    </element>
+</database>
